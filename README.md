@@ -115,4 +115,8 @@ The Monty program runs the bytecodes line by line and stops under the following 
 
   - Usage: queue
 
-- **Conmments**: Every good language comes with the capability of commenting. In Monty, when the first non-space character of a line is #, treat this line as a comment (don't execute any action).
+- **Comments**: Every good language comes with the capability of commenting. In Monty, when the first non-space character of a line is #, treat this line as a comment (don't execute any action).
+
+## Contributors
+
+- Toby Salau
