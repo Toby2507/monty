@@ -80,7 +80,7 @@ int isInt(char *str)
 	if (!str || !(*str))
 		return (0);
 	for (; *str; str++)
-		if (!isdigit(*str))
+		if (!isdigit(*str) && *str != '-')
 			return (0);
 	return (1);
 }
