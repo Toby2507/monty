@@ -3,9 +3,10 @@
 /**
  * l_insert - inserts a new value into the list
  * @stack: stack head
+ * @f_in: input file
  * @val: new value
  */
-void l_insert(stacks_t **stack, int val)
+void l_insert(stacks_t **stack, FILE *f_in, int val)
 {
 	stacks_t *l_new = malloc(sizeof(stacks_t)), *curr = *stack;
 
@@ -13,6 +14,7 @@ void l_insert(stacks_t **stack, int val)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	l_new->n = val;
@@ -41,11 +43,13 @@ void l_insert(stacks_t **stack, int val)
 /**
  * op_nop - does nothing
  * @stack: stack head / front
+ * @f_in: input file
  * @line_no: line_no
  */
-void op_nop(stacks_t **stack, unsigned int line_no)
+void op_nop(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	(void)stack;
+	(void)f_in;
 	(void)line_no;
 }
 

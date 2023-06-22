@@ -32,29 +32,29 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stacks_t **stack, unsigned int line_no);
+	void (*f)(stacks_t **stack, FILE *f_in, unsigned int line_no);
 } instruction_t;
 
-typedef void (*op_action)(stacks_t **stack, unsigned int line_no);
+typedef void (*op_action)(stacks_t **stack, FILE *f_in, unsigned int line_no);
 extern char *l_type;
 
-void op_pchar(stacks_t **stack, unsigned int line_no);
-void op_stack(stacks_t **stack, unsigned int line_no);
-void op_queue(stacks_t **stack, unsigned int line_no);
-void op_pall(stacks_t **stack, unsigned int line_no);
-void op_swap(stacks_t **stack, unsigned int line_no);
-void op_pint(stacks_t **stack, unsigned int line_no);
-void op_pstr(stacks_t **stack, unsigned int line_no);
-void op_rotl(stacks_t **stack, unsigned int line_no);
-void op_rotr(stacks_t **stack, unsigned int line_no);
-void op_pop(stacks_t **stack, unsigned int line_no);
-void op_add(stacks_t **stack, unsigned int line_no);
-void op_nop(stacks_t **stack, unsigned int line_no);
-void op_sub(stacks_t **stack, unsigned int line_no);
-void op_div(stacks_t **stack, unsigned int line_no);
-void op_mul(stacks_t **stack, unsigned int line_no);
-void op_mod(stacks_t **stack, unsigned int line_no);
-void l_insert(stacks_t **stack, int val);
+void op_pchar(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_stack(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_queue(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_pall(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_swap(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_pint(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_pstr(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_rotl(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_rotr(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_pop(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_add(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_nop(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_sub(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_div(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_mul(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void op_mod(stacks_t **stack, FILE *f_in, unsigned int line_no);
+void l_insert(stacks_t **stack, FILE *f_in, int val);
 void free_list(stacks_t *stack);
 op_action op_get(char *op);
 void trim_in(char *str);

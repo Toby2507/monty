@@ -5,10 +5,11 @@ char *l_type = "stack";
 /**
  * handle_comm - handles op commands
  * @stack: stack top/front
+ * @f_in: input file
  * @op_c: op command
  * @l_no: line number of op command
  */
-void handle_comm(stacks_t **stack, char *op_c, unsigned int l_no)
+void handle_comm(stacks_t **stack, FILE *f_in, char *op_c, unsigned int l_no)
 {
 	char *op_a;
 	op_action op_act;
@@ -22,19 +23,21 @@ void handle_comm(stacks_t **stack, char *op_c, unsigned int l_no)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", l_no);
 			free_list(*stack);
+			fclose(f_in);
 			exit(EXIT_FAILURE);
 		}
-		l_insert(stack, atoi(op_a));
+		l_insert(stack, f_in, atoi(op_a));
 	}
 	else
 	{
 		op_act = op_get(op_c);
 		if (op_act)
-			op_act(stack, l_no);
+			op_act(stack, f_in, l_no);
 		else
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", l_no, op_c);
-			free_list(*stack);
+			free(*stack);
+			fclose(f_in);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -71,11 +74,11 @@ int main(int ac, char **av)
 		if (*l_inst)
 		{
 			op_c = strtok(l_inst, " ");
-			handle_comm(&stack, op_c, l_no);
+			handle_comm(&stack, f_in, op_c, l_no);
 		}
 		l_no++;
 	}
-	free_list(stack);
+	free(stack);
 	fclose(f_in);
 	return (0);
 }

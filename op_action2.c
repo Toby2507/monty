@@ -3,9 +3,10 @@
 /**
  * op_pop - removes the top element of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_pop(stacks_t **stack, unsigned int line_no)
+void op_pop(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *popped = *stack;
 
@@ -13,6 +14,7 @@ void op_pop(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	*stack = popped->next;
@@ -24,14 +26,16 @@ void op_pop(stacks_t **stack, unsigned int line_no)
 /**
  * op_pint - prints the value at the top of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_pint(stacks_t **stack, unsigned int line_no)
+void op_pint(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -40,11 +44,13 @@ void op_pint(stacks_t **stack, unsigned int line_no)
 /**
  * op_pall - prints all the values on the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_pall(stacks_t **stack, unsigned int line_no)
+void op_pall(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *curr = *stack;
+	(void)f_in;
 	(void)line_no;
 
 	for (; curr; curr = curr->next)
@@ -54,9 +60,10 @@ void op_pall(stacks_t **stack, unsigned int line_no)
 /**
  * op_swap - swaps the top two elements of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_swap(stacks_t **stack, unsigned int line_no)
+void op_swap(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *first = *stack, *second = NULL;
 
@@ -64,6 +71,7 @@ void op_swap(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
@@ -79,9 +87,10 @@ void op_swap(stacks_t **stack, unsigned int line_no)
 /**
  * op_pchar - prints the char at the top of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_pchar(stacks_t **stack, unsigned int line_no)
+void op_pchar(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	int s_top;
 
@@ -89,6 +98,7 @@ void op_pchar(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	s_top = (*stack)->n;
@@ -96,6 +106,7 @@ void op_pchar(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", s_top);

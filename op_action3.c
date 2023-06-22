@@ -3,11 +3,13 @@
 /**
  * op_pstr - prints the string starting at the top of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_pstr(stacks_t **stack, unsigned int line_no)
+void op_pstr(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *curr = *stack;
+	(void)f_in;
 	(void)line_no;
 
 	for (; curr; curr = curr->next)
@@ -22,11 +24,13 @@ void op_pstr(stacks_t **stack, unsigned int line_no)
 /**
  * op_rotl - rotates the stack to the top
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_rotl(stacks_t **stack, unsigned int line_no)
+void op_rotl(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *top = *stack, *end = *stack;
+	(void)f_in;
 	(void)line_no;
 
 	if (!(*stack) || !(*stack)->next)
@@ -43,11 +47,13 @@ void op_rotl(stacks_t **stack, unsigned int line_no)
 /**
  * op_rotr - rotates the stack to the bottom
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_rotr(stacks_t **stack, unsigned int line_no)
+void op_rotr(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *top = *stack, *end = *stack;
+	(void)f_in;
 	(void)line_no;
 
 	if (!(*stack) || !(*stack)->next)
@@ -64,11 +70,13 @@ void op_rotr(stacks_t **stack, unsigned int line_no)
 /**
  * op_stack - sets the format of the data to a stack (LIFO)
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_stack(stacks_t **stack, unsigned int line_no)
+void op_stack(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	(void)stack;
+	(void)f_in;
 	(void)line_no;
 	l_type = "stack";
 }
@@ -76,11 +84,13 @@ void op_stack(stacks_t **stack, unsigned int line_no)
 /**
  * op_queue - sets the format of the data to a queue (FIFO)
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_queue(stacks_t **stack, unsigned int line_no)
+void op_queue(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	(void)stack;
+	(void)f_in;
 	(void)line_no;
 	l_type = "queue";
 }

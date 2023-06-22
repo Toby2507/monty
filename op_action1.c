@@ -3,9 +3,10 @@
 /**
  * op_add - add the top 2 elements of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_add(stacks_t **stack, unsigned int line_no)
+void op_add(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *first = *stack, *second = NULL;
 	int added;
@@ -14,6 +15,7 @@ void op_add(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
@@ -27,9 +29,10 @@ void op_add(stacks_t **stack, unsigned int line_no)
 /**
  * op_sub - subtracts the top from the second top element of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_sub(stacks_t **stack, unsigned int line_no)
+void op_sub(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *first = *stack, *second = NULL;
 	int sub;
@@ -38,6 +41,7 @@ void op_sub(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
@@ -51,9 +55,10 @@ void op_sub(stacks_t **stack, unsigned int line_no)
 /**
  * op_mul - multiplies the second top with the top element of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_mul(stacks_t **stack, unsigned int line_no)
+void op_mul(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *first = *stack, *second = NULL;
 	int mul;
@@ -62,6 +67,7 @@ void op_mul(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
@@ -75,9 +81,10 @@ void op_mul(stacks_t **stack, unsigned int line_no)
 /**
  * op_div - divides the second top by the top element of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_div(stacks_t **stack, unsigned int line_no)
+void op_div(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *first = *stack, *second = NULL;
 	int div;
@@ -86,12 +93,14 @@ void op_div(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
@@ -105,9 +114,10 @@ void op_div(stacks_t **stack, unsigned int line_no)
 /**
  * op_mod - modulus of the second top and the top element of the stack
  * @stack: stack head / front
+ * @f_in: file input
  * @line_no: line_no
  */
-void op_mod(stacks_t **stack, unsigned int line_no)
+void op_mod(stacks_t **stack, FILE *f_in, unsigned int line_no)
 {
 	stacks_t *first = *stack, *second = NULL;
 	int div;
@@ -116,12 +126,14 @@ void op_mod(stacks_t **stack, unsigned int line_no)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_no);
 		free_list(*stack);
+		fclose(f_in);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
