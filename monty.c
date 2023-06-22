@@ -20,7 +20,7 @@ void handle_comm(stacks_t **stack, char *op_c, unsigned int l_no)
 		op_a = strtok(NULL, " ");
 		if (op_a == NULL || !isInt(op_a))
 		{
-			fprintf(stderr, "%u: usage: push integer\n", l_no);
+			fprintf(stderr, "L%u: usage: push integer\n", l_no);
 			exit(EXIT_FAILURE);
 		}
 		l_insert(stack, atoi(op_a));
@@ -32,7 +32,7 @@ void handle_comm(stacks_t **stack, char *op_c, unsigned int l_no)
 			op_act(stack, l_no);
 		else
 		{
-			fprintf(stderr, "%u: unknown instruction %s\n", l_no, op_c);
+			fprintf(stderr, "L%u: unknown instruction %s\n", l_no, op_c);
 			exit(EXIT_FAILURE);
 		}
 	}
