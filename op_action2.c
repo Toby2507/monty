@@ -12,6 +12,7 @@ void op_pop(stacks_t **stack, unsigned int line_no)
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_no);
+		free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	*stack = popped->next;
@@ -30,6 +31,7 @@ void op_pint(stacks_t **stack, unsigned int line_no)
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_no);
+		free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -61,6 +63,7 @@ void op_swap(stacks_t **stack, unsigned int line_no)
 	if (!(*stack) || !(*stack)->next)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_no);
+		free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	second = first->next;
@@ -85,12 +88,14 @@ void op_pchar(stacks_t **stack, unsigned int line_no)
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_no);
+		free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	s_top = (*stack)->n;
 	if (s_top < 0 || s_top > 127)
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range", line_no);
+		free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", s_top);

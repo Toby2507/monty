@@ -55,6 +55,7 @@ void op_div(stacks_t **stack, unsigned int line_no);
 void op_mul(stacks_t **stack, unsigned int line_no);
 void op_mod(stacks_t **stack, unsigned int line_no);
 void l_insert(stacks_t **stack, int val);
+void free_list(stacks_t *stack);
 op_action op_get(char *op);
 void trim_in(char *str);
 int isInt(char *str);

@@ -12,6 +12,7 @@ void l_insert(stacks_t **stack, int val)
 	if (!l_new)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	l_new->n = val;
@@ -83,4 +84,19 @@ int isInt(char *str)
 		if (!isdigit(*str) && *str != '-')
 			return (0);
 	return (1);
+}
+
+/**
+ * free_list - free the list
+ * @stack: stack head
+ */
+void free_list(stacks_t *stack)
+{
+	stacks_t *curr = stack, *next = NULL;
+
+	for (; curr; curr = next)
+	{
+		next = curr->next;
+		free(curr);
+	}
 }
