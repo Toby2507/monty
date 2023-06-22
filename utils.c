@@ -12,7 +12,7 @@ void l_insert(stacks_t **stack, int val)
 	if (!l_new)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free(*stack);
+		free_list(*stack);
 		exit(EXIT_FAILURE);
 	}
 	l_new->n = val;
