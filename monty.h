@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -19,7 +20,7 @@ typedef struct stack_s
 	int n;
 	struct stack_s *prev;
 	struct stack_s *next;
-} stack_t;
+} stacks_t;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -31,28 +32,31 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_no);
+	void (*f)(stacks_t **stack, unsigned int line_no);
 } instruction_t;
 
-typedef void (*op_action)(stack_t **stack, unsigned int line_no);
+typedef void (*op_action)(stacks_t **stack, unsigned int line_no);
+extern char *l_type;
 
-void op_pchar(stack_t **stack, unsigned int line_no);
-void op_stack(stack_t **stack, unsigned int line_no);
-void op_queue(stack_t **stack, unsigned int line_no);
-void op_push(stack_t **stack, unsigned int line_no);
-void op_pall(stack_t **stack, unsigned int line_no);
-void op_swap(stack_t **stack, unsigned int line_no);
-void op_pint(stack_t **stack, unsigned int line_no);
-void op_pstr(stack_t **stack, unsigned int line_no);
-void op_rotl(stack_t **stack, unsigned int line_no);
-void op_rotr(stack_t **stack, unsigned int line_no);
-void op_pop(stack_t **stack, unsigned int line_no);
-void op_add(stack_t **stack, unsigned int line_no);
-void op_nop(stack_t **stack, unsigned int line_no);
-void op_sub(stack_t **stack, unsigned int line_no);
-void op_div(stack_t **stack, unsigned int line_no);
-void op_mul(stack_t **stack, unsigned int line_no);
-void op_mod(stack_t **stack, unsigned int line_no);
-instruction_t *op_list(void);
+void op_pchar(stacks_t **stack, unsigned int line_no);
+void op_stack(stacks_t **stack, unsigned int line_no);
+void op_queue(stacks_t **stack, unsigned int line_no);
+void op_pall(stacks_t **stack, unsigned int line_no);
+void op_swap(stacks_t **stack, unsigned int line_no);
+void op_pint(stacks_t **stack, unsigned int line_no);
+void op_pstr(stacks_t **stack, unsigned int line_no);
+void op_rotl(stacks_t **stack, unsigned int line_no);
+void op_rotr(stacks_t **stack, unsigned int line_no);
+void op_pop(stacks_t **stack, unsigned int line_no);
+void op_add(stacks_t **stack, unsigned int line_no);
+void op_nop(stacks_t **stack, unsigned int line_no);
+void op_sub(stacks_t **stack, unsigned int line_no);
+void op_div(stacks_t **stack, unsigned int line_no);
+void op_mul(stacks_t **stack, unsigned int line_no);
+void op_mod(stacks_t **stack, unsigned int line_no);
+void l_insert(stacks_t **stack, int val);
+op_action op_get(char *op);
+void trim_in(char *str);
+int isInt(char *str);
 
 #endif /** MONTY_H **/
