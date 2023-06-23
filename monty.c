@@ -36,7 +36,7 @@ void handle_comm(stacks_t **stack, FILE *f_in, char *op_c, unsigned int l_no)
 		else
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", l_no, op_c);
-			free(*stack);
+			free_list(*stack);
 			fclose(f_in);
 			exit(EXIT_FAILURE);
 		}
@@ -78,7 +78,7 @@ int main(int ac, char **av)
 		}
 		l_no++;
 	}
-	free(stack);
+	free_list(stack);
 	fclose(f_in);
 	return (0);
 }
