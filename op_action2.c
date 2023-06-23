@@ -104,7 +104,7 @@ void op_pchar(stacks_t **stack, FILE *f_in, unsigned int line_no)
 	s_top = (*stack)->n;
 	if (s_top < 0 || s_top > 127)
 	{
-		fprintf(stderr, "L%u: can't pchar, value out of range", line_no);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_no);
 		free_list(*stack);
 		fclose(f_in);
 		exit(EXIT_FAILURE);
